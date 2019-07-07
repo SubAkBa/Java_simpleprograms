@@ -1,0 +1,25 @@
+Calendar cal1=Calendar.getInstance();
+      Calendar cal2=Calendar.getInstance();
+      cal1.setTime(new Date());
+      cal2.set(Integer.parseInt(jtf.getText().substring(0,4)), 
+             Integer.parseInt(jtf.getText().substring(5, 7))-1,
+             Integer.parseInt(jtf.getText().substring(8, 10)));
+      
+      int count=0;
+      while(!cal2.after(cal1)) {
+         count++;
+         cal2.add(Calendar.DATE,1);
+      }
+      
+      BiorhythmThread phy=new BiorhythmThread(count,'p');
+      BiorhythmThread emo=new BiorhythmThread(count,'e');
+      BiorhythmThread intell=new BiorhythmThread(count,'i');
+      
+      phy.start();
+      emo.start();
+      intell.start();
+      
+      DecimalFormat f = new DecimalFormat("#.###");
+      physical[1].setText(f.format(phy.getBiorhythm()));
+      emotional[1].setText(f.format(emo.getBiorhythm()));
+      intellectual[1].setText(f.format(intell.getBiorhythm()));
