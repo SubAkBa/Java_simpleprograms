@@ -1,4 +1,4 @@
-package ¼ºº°°ú¿¬·É±¸ºÐÇÏ±â;
+package ì„±ë³„ê³¼ì—°ë ¹êµ¬ë¶„í•˜ê¸°;
 
 import java.util.*;
 
@@ -10,60 +10,49 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class ¼ºº°°ú¿¬·É±¸ºÐÇÏ±â 
-{
-	public static void main(String[] args) 
-	{
+public class ì„±ë³„ê³¼ì—°ë ¹êµ¬ë¶„í•˜ê¸° {
+	public static void main(String[] args) {
 		StringBuffer sb = new StringBuffer();
-		
-		JFrame frm = new JFrame("³²¿©/¿¬·É ±¸ºÐÇÏ±â");
+
+		JFrame frm = new JFrame("ë‚¨ì—¬/ì—°ë ¹ êµ¬ë¶„í•˜ê¸°");
 		frm.setSize(400, 300);
 		frm.setLayout(new BorderLayout());
-		
+
 		JTextArea jta = new JTextArea();
-		JButton btn = new JButton("½ÇÇà");
-		
-		btn.addActionListener
-		(
-				new ActionListener()
-				{
-					public void actionPerformed(ActionEvent ae)
-					{
-						StringTokenizer stk = new StringTokenizer(jta.getText(),",\n ");
-						String[] sa = new String[stk.countTokens()];
-						int num = 0;
-						for(int i=0;i<sa.length;i++)
-						{
-							sa[i] = stk.nextToken();
-							sb.append(sa[i]+"\t");
-							if(sa[i].charAt(7) == '1')
-								sb.append("³²¼º\t");
-							else
-								sb.append("¿©¼º\t");
-							
-							num = Integer.parseInt(sa[i].substring(0, 2));
-							sb.append((116-num) + "\n");
-						}
-						
-						jta.setText(sb.toString());
-						
-						try
-						{
-							BufferedWriter bw = new BufferedWriter(new FileWriter("¸Þ¸ðÀå.txt"));
-							bw.write(sb.toString());
-							bw.close();
-						}
-						catch(IOException ie)
-						{
-							ie.getStackTrace();
-						}
-					}
+		JButton btn = new JButton("ì‹¤í–‰");
+
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				StringTokenizer stk = new StringTokenizer(jta.getText(), ",\n ");
+				String[] sa = new String[stk.countTokens()];
+				int num = 0;
+				for (int i = 0; i < sa.length; i++) {
+					sa[i] = stk.nextToken();
+					sb.append(sa[i] + "\t");
+					if (sa[i].charAt(7) == '1')
+						sb.append("ë‚¨ì„±\t");
+					else
+						sb.append("ì—¬ì„±\t");
+
+					num = Integer.parseInt(sa[i].substring(0, 2));
+					sb.append((116 - num) + "\n");
 				}
-		);
-		
+
+				jta.setText(sb.toString());
+
+				try {
+					BufferedWriter bw = new BufferedWriter(new FileWriter("ë©”ëª¨ìž¥.txt"));
+					bw.write(sb.toString());
+					bw.close();
+				} catch (IOException ie) {
+					ie.getStackTrace();
+				}
+			}
+		});
+
 		frm.add(jta, BorderLayout.CENTER);
 		frm.add(btn, BorderLayout.SOUTH);
-		
+
 		frm.setVisible(true);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
